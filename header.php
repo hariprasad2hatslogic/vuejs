@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="css/style.css" />
   <!-- development version, includes helpful console warnings -->
   <title>Vuejs Lab</title>
+  <link rel="icon" href="#" />
+  <!-- <link rel='icon' href='favicon.ico' type='image/x-icon' /> -->
 </head>
 
 <body>

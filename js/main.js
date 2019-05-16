@@ -1,10 +1,3 @@
-var app = new Vue({
-  el: '#app',
-  data: {
-    message: 'Hello Vue!'
-  }
-});
-
 const signUpForm = new Vue({
   el: '#signUpForm',
   data: {
@@ -13,7 +6,7 @@ const signUpForm = new Vue({
     inputPassword: null,
   },
   methods:{
-    checksignUpForm: function (e) {
+    checkSignUpForm: function (e) {
       if (this.inputEmail && this.inputPassword) {
         return true;
       }
@@ -29,6 +22,16 @@ const signUpForm = new Vue({
       if (!this.inputPassword) {
         this.errors.push('Password required.');
       }
+      
+      $.ajax({
+        type: "POST",
+        url: 'ajax.php',
+        data: $('#signUpForm').serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+            console.log(data); // show response from the php script.
+        }
+      });
 
       e.preventDefault();
     }

@@ -5,7 +5,7 @@
       <div class="card card-signin my-5">
         <div class="card-body">
           <h5 class="card-title text-center">Sign In</h5>
-          <form id="signUpForm" @submit="checksignUpForm" action="" method="post" class="form-signin">
+          <form id="signUpForm" <?php /* @submit="checkSignUpForm" */?> v-on:submit.prevent="checkSignUpForm" action="" method="post" class="form-signin">
             <div class="sign-up-errors" v-if="errors.length">
               <ul>
                 <li class="alert alert-danger" v-for="error in errors">{{ error }}</li>
@@ -13,13 +13,13 @@
             </div>
             <div class="form-label-group">
               <input type="email" id="inputEmail" v-model="inputEmail" class="form-control" 
-              placeholder="Email address" autofocus required>
+              placeholder="Email address" autofocus >
               <label for="inputEmail">Email address</label>
             </div>
 
             <div class="form-label-group">
               <input type="password" id="inputPassword" v-model="inputPassword" class="form-control" 
-              placeholder="Password" required >
+              placeholder="Password"  >
               <label for="inputPassword">Password</label>
             </div>
 
