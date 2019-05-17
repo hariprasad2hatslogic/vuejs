@@ -1,44 +1,55 @@
-const signUpForm = new Vue({
-  el: '#signUpForm',
+const mailForm = new Vue({
+  el: '#mailApp',
   data: {
     errors: [],
-    inputEmail: null,
-    inputPassword: null,
+    mailSubject: null,
+    mailContent: null,
+    mails: [],
+    checkedMails:[],
   },
   methods:{
-    checkSignUpForm: function (e) {
-      if (this.inputEmail && this.inputPassword) {
-        return true;
-      }
+    checkMailForm: function (e) {    
 
+      console.log(this.checkedMails);
       this.errors = [];
 
-      if (!this.inputEmail) {
-        this.errors.push('Email required.');
+      if (!this.mailSubject) {
+        this.errors.push('Subject required.');
       }
-      else if (!isEmail(this.inputEmail)) {
-        this.errors.push('Invalid Email.');
+      if (!this.mailContent) {
+        this.errors.push('Content required.');
       }
-      if (!this.inputPassword) {
-        this.errors.push('Password required.');
+      if (this.errors.length === 0)
+      {
+        this.mails.push(
+          {
+            id: this.errors.length+1,
+            name: this.mailSubject,
+            content: this.mailContent,
+          }
+          );
+          this.mails.reverse();
       }
       
-      $.ajax({
-        type: "POST",
-        url: 'ajax.php',
-        data: $('#signUpForm').serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-            console.log(data); // show response from the php script.
-        }
-      });
-
+      
+      /*
+      {
+        id: 1,
+        name: 'Richard Hendricks',
+        email: 'richard@piedpiper.com',
+      },
+      {
+        id: 2,
+        name: 'Bertram Gilfoyle',
+        email: 'gilfoyle@piedpiper.com',
+      },
+      {
+        id: 3,
+        name: 'Dinesh Chugtai',
+        email: 'dinesh@piedpiper.com',
+      },
+      */
       e.preventDefault();
     }
   }
 });
-
-function isEmail(email) {
-  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-  return regex.test(email);
-}

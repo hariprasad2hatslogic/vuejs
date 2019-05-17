@@ -1,0 +1,15 @@
+// Color system
+$white:  #fff !default;
+$color__yellow--light: #efca5dbf;
+$color__light--gray: #ccc;
+$color__red: red;
+
+$theme-colors: (
+    bt-color: $color__yellow--light,
+    white-color: $white,
+    border-gray: $color__light--gray,
+    active-font: $color__red
+);
+
+$font-awesome: FontAwesome, Arial, Helvetica, sans-serif;
+$font-awesome-pro: "Font Awesome 5 Pro", serif;
