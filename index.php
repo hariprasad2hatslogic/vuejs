@@ -65,7 +65,7 @@
               <table class="table table-sm indbox-table" id="tbl">
                 <tbody>
                   <tr class="bold ">
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox1" :id="item_id" value="this"/></td>
+                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox1" value="this"/></td>
                     <td colspan="6">aaa the Bird</td>
                   </tr>
                   <tr class="bold">

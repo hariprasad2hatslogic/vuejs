@@ -10,7 +10,6 @@ const mailForm = new Vue({
   methods:{
     checkMailForm: function (e) {    
 
-      console.log(this.checkedMails);
       this.errors = [];
 
       if (!this.mailSubject) {
