@@ -30,25 +30,50 @@ const mailForm = new Vue({
           this.mails.reverse();
       }
       
-      
-      /*
-      {
-        id: 1,
-        name: 'Richard Hendricks',
-        email: 'richard@piedpiper.com',
-      },
-      {
-        id: 2,
-        name: 'Bertram Gilfoyle',
-        email: 'gilfoyle@piedpiper.com',
-      },
-      {
-        id: 3,
-        name: 'Dinesh Chugtai',
-        email: 'dinesh@piedpiper.com',
-      },
-      */
       e.preventDefault();
     }
   }
 });
+
+/*
+
+// select all checkbox and add-remove bakgrnd color
+$(document).ready(function () {
+  $("#ckbCheckAll").click(function () {
+    $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+    $('tr').addClass('bg-color');
+    $("#ckbCheckAll").change(function () {
+      if (!$(this).prop("checked")) {
+        $(".checkBoxClass").prop("checked", false);
+        $('tr').removeClass("bg-color");
+      }
+    });
+  });
+
+  // add remove bkgrnd class single check
+  $('#tbl tbody input[type=checkbox]').change(function () {
+    $(this).closest('tr').toggleClass("bg-color", this.checked);
+  });
+
+  //   delete checked items and move to trash
+  $("#deleteAcc").on("click", function () {
+    $("input.checkBoxClass:checked").closest('tr').appendTo($(".bin .table tbody "));
+  });
+
+  $(".trash-bt").click(function () {
+    $("input.checkBoxClass:checked").closest('tr').removeClass('bg-color');
+    $("input.checkBoxClass").prop("checked", false);
+    $("#ckbCheckAll").prop("checked", false);
+  });
+
+  //   unread checked items
+  $("#ReadChkB").on("click", function () {
+    $("input.checkBoxClass:checked").closest('tr').removeClass('bold', this.checked);
+  });
+
+  //   read checked items
+  $("#unReadChk").on("click", function () {
+    $("input.checkBoxClass:checked").closest('tr').addClass('bold', this.checked);
+  });
+});
+*/
