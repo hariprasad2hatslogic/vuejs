@@ -1,4 +1,4 @@
-<?php include('header.php'); ?>
+<?php include 'header.php';?>
 <section id="mailApp">
   <div class="main">
     <div class="container-fluid">
@@ -10,16 +10,16 @@
           </div>
           <div class="col-sm-6">
             <div class="main__check">
-              <a href="#"><input type="checkbox" id="ckbCheckAll" />Select all</a>
+              <input type="checkbox" @click="toggleSelect" :checked="selectAll"/>Select all
             </div>
             <div class="main__refresh">
-              <a href="#" class="delete" id="deleteAcc">Delete</a>
+              <a href="#" class="delete" id="deleteAcc" @click="moveToTrash">Delete</a>
             </div>
             <div class="main__refresh">
-              <a href="#" class="read" id="ReadChkB">Mark as read</a>
+              <a href="#" class="read" id="ReadChkB"  @click="markAsRead">Mark as read</a>
             </div>
             <div class="main__refresh">
-              <a href="#" class="unread" id="unReadChk">Mark as unread</a>
+              <a href="#" class="unread" id="unReadChk" @click="markAsUnRead">Mark as unread</a>
             </div>
           </div>
           <div class="col-sm-4">
@@ -49,11 +49,11 @@
             <div class="nav flex-column nav-pills side-nav__main " id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
               <!-- <button type="button" class="btn side-nav__btn" data-toggle="modal" data-target="#myModal"> Open modal</button> -->
-              <a class=" side-nav__list nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+              <a v-on:click="tabInbox" class=" side-nav__list nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
                 role="tab" aria-controls="v-pills-home" aria-selected="true">inbox</a>
-              <a class="nav-link side-nav__list" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+              <a v-on:click="tabSent" class="nav-link side-nav__list" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
                 role="tab" aria-controls="v-pills-messages" aria-selected="false">Sent items</a>
-              <a class="nav-link side-nav__list trash-bt" id="v-pills-settings-tab" data-toggle="pill"
+              <a v-on:click="tabTrash" class="nav-link side-nav__list trash-bt" id="v-pills-settings-tab" data-toggle="pill"
                 href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Trash</a>
             </div>
           </div>
@@ -64,49 +64,12 @@
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <table class="table table-sm indbox-table" id="tbl">
                 <tbody>
-                  <tr class="bold ">
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox1" value="this"/></td>
-                    <td colspan="6">aaa the Bird</td>
-                  </tr>
-                  <tr class="bold">
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox2" /></td>
-                    <td colspan="6">bbb the Bird</td>
-                  </tr>
-                  <tr class="bold">
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox3" /></td>
-                    <td colspan="6">cccy the Bird</td>
-
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox4" /></td>
-                    <td colspan="6">dd the Bird</td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox5" /></td>
-                    <td colspan="6">eee the Bird</td>
-
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox6" />
-                    </td>
-                    <td colspan="6">fff the Bird</td>
-
-                  </tr>
-                  <tr class="bold">
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox7" />
-                    </td>
-                    <td colspan="6">ggg Bird</td>
-
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox8" />
-                    </td>
-                    <td colspan="6">hhhhhe Bird</td>
-
-                  </tr>
+                  <tr :class="[mailReceived.status?'bold':'']" v-if="mailsReceived.length" v-for="mailReceived in mailsReceived">
+                  <td>
+                    <input type="checkbox" class="checkBoxClass" v-model="mailReceived.checked" :value="mailReceived.id" />
+                  </td>
+                  <td colspan="6" >{{ mailReceived.name }}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
@@ -114,41 +77,25 @@
               <table class="table table-sm indbox-table">
                 <tbody>
 
-                <tr class="{{ class }}" v-if="mails.length" v-for="mail in mails">
+                <tr v-if="mailsSent.length" v-for="mailSent in mailsSent">
                   <td>
-                    <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox8" />
+                    <input type="checkbox" class="checkBoxClass" v-model="mailSent.checked" :value="mailSent.id" />
                   </td>
-                  <td colspan="6" >{{ mail.name }}</td>
-
+                  <td colspan="6" >{{ mailSent.name }}</td>
                 </tr>
 
-                  <tr class="{{ placeholder }}">
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox7" />
-                    </td>
-                    <td colspan="6">ggg Bird</td>
-
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox8" />
-                    </td>
-                    <td colspan="6">hhhhhe Bird</td>
-
-                  </tr>
                 </tbody>
               </table>
             </div>
             <div class="tab-pane fade bin" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
               <table class="table table-sm trash-table">
                 <tbody>
-                  <tr>
-                    <td>
-                      <input type="checkbox" v-model="checkedMails" class="checkBoxClass" id="Checkbox8" />
-                    </td>
-                    <td colspan="6">hhhhhe Bird</td>
-                  </tr>
+                <tr v-if="mailsSent.length" v-for="mailsDeleted in mailsDeleted">
+                  <td>
+                    <input type="checkbox" class="checkBoxClass" v-model="mailsDeleted.checked" :value="mailsDeleted.id" />
+                  </td>
+                  <td colspan="6" >{{ mailsDeleted.name }}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
@@ -180,10 +127,10 @@
               <input type="text" class="form-control" name="mailSubject" v-model="mailSubject" id="mailSubject"
                 placeholder="Mail Subject">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <textarea class="form-control" name="mailContent" v-model="mailContent" id="mailContent"
                 placeholder="Email Content"></textarea>
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-primary">Save</button>
           </form>
         </div>
@@ -197,4 +144,4 @@
     </div>
   </div>
 </section>
-<?php include('footer.php'); ?>
+<?php include 'footer.php';?>
