@@ -1,6 +1,6 @@
   <!-- Optional JavaScript -->
-  <!-- production version, optimized for size and speed -->
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<!-- development version, includes helpful console warnings -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   
   <script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
