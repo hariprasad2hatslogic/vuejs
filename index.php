@@ -10,13 +10,13 @@
           </div>
           <div class="col-sm-6">
             <div class="main__check">
-              <input type="checkbox" @click="toggleSelect" :checked="selectAll"/>Select all
+              <input type="checkbox" @click="toggleSelect" :checked="selectAll" />Select all
             </div>
             <div class="main__refresh">
               <a href="#" class="delete" id="deleteAcc" @click="moveToTrash">Delete</a>
             </div>
             <div class="main__refresh">
-              <a href="#" class="read" id="ReadChkB"  @click="markAsRead">Mark as read</a>
+              <a href="#" class="read" id="ReadChkB" @click="markAsRead">Mark as read</a>
             </div>
             <div class="main__refresh">
               <a href="#" class="unread" id="unReadChk" @click="markAsUnRead">Mark as unread</a>
@@ -49,12 +49,14 @@
             <div class="nav flex-column nav-pills side-nav__main " id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
               <!-- <button type="button" class="btn side-nav__btn" data-toggle="modal" data-target="#myModal"> Open modal</button> -->
-              <a v-on:click="tabInbox" class=" side-nav__list nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
-                role="tab" aria-controls="v-pills-home" aria-selected="true">inbox</a>
-              <a v-on:click="tabSent" class="nav-link side-nav__list" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
-                role="tab" aria-controls="v-pills-messages" aria-selected="false">Sent items</a>
-              <a v-on:click="tabTrash" class="nav-link side-nav__list trash-bt" id="v-pills-settings-tab" data-toggle="pill"
-                href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Trash</a>
+              <a v-on:click="tabInbox" class=" side-nav__list nav-link active" id="v-pills-home-tab" data-toggle="pill"
+                href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">inbox</a>
+              <a v-on:click="tabSent" class="nav-link side-nav__list" id="v-pills-messages-tab" data-toggle="pill"
+                href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sent
+                items</a>
+              <a v-on:click="tabTrash" class="nav-link side-nav__list trash-bt" id="v-pills-settings-tab"
+                data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                aria-selected="false">Trash</a>
             </div>
           </div>
         </div>
@@ -64,12 +66,12 @@
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <table class="table table-sm indbox-table" id="tbl">
                 <tbody>
-                  <tr :class="[mailReceived.status?'bold':'']" v-if="mailsReceived.length" v-for="mailReceived in mailsReceived">
-                  <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mailReceived.checked" :value="mailReceived.id" />
-                  </td>
-                  <td colspan="6" >{{ mailReceived.name }}</td>
-                </tr>
+                  <tr :class="[mail.status?'bold':'']" v-if="mails.length" v-for="mail in mails">
+                    <td>
+                      <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    </td>
+                    <td colspan="6">{{ mail.name }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -77,25 +79,24 @@
               <table class="table table-sm indbox-table">
                 <tbody>
 
-                <tr :class="[mailSent.status?'bold':'']" v-if="mailsSent.length" v-for="mailSent in mailsSent">
-                  <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mailSent.checked" :value="mailSent.id" />
-                  </td>
-                  <td colspan="6" >{{ mailSent.name }}</td>
-                </tr>
-
+                  <tr :class="[mail.status?'bold':'']" v-if="mails.length" v-for="mail in mails">
+                    <td>
+                      <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    </td>
+                    <td colspan="6">{{ mail.name }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <div class="tab-pane fade bin" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
               <table class="table table-sm trash-table">
                 <tbody>
-                <tr :class="[mailDeleted.status?'bold':'']" v-if="mailsSent.length" v-for="mailDeleted in mailsDeleted">
-                  <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mailDeleted.checked" :value="mailDeleted.id" />
-                  </td>
-                  <td colspan="6" >{{ mailDeleted.name }}</td>
-                </tr>
+                  <tr :class="[mail.status?'bold':'']" v-if="mails.length" v-for="mail in mails">
+                    <td>
+                      <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    </td>
+                    <td colspan="6">{{ mail.name }}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -124,8 +125,8 @@
               </ul>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control" name="mailSubject" v-model="mailSubject" id="mailSubject"
-                placeholder="Mail Subject">
+              <input type="text" class="form-control" name="mailSubject" v-model="mailSubject"
+              id="mailSubject" placeholder="Mail Subject">
             </div>
             <!-- <div class="form-group">
               <textarea class="form-control" name="mailContent" v-model="mailContent" id="mailContent"
@@ -144,4 +145,4 @@
     </div>
   </div>
 </section>
-<?php include 'footer.php';?>
+<?php include 'footer_v2.php';?>

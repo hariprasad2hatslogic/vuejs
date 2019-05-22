@@ -64,11 +64,11 @@
             <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <table class="table table-sm indbox-table" id="tbl">
                 <tbody>
-                  <tr :class="[mail.status?'bold':'']" v-if="mail.length" v-for="mail in mailsToDisplay">
+                  <tr :class="[mailReceived.status?'bold':'']" v-if="mailsReceived.length" v-for="mailReceived in mailsReceived">
                   <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    <input type="checkbox" class="checkBoxClass" v-model="mailReceived.checked" :value="mailReceived.id" />
                   </td>
-                  <td colspan="6" >{{ mail.name }}</td>
+                  <td colspan="6" >{{ mailReceived.name }}</td>
                 </tr>
                 </tbody>
               </table>
@@ -77,11 +77,11 @@
               <table class="table table-sm indbox-table">
                 <tbody>
 
-                <tr :class="[mail.status?'bold':'']" v-if="mail.length" v-for="mail in mailsToDisplay">
+                <tr :class="[mailSent.status?'bold':'']" v-if="mailsSent.length" v-for="mailSent in mailsSent">
                   <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    <input type="checkbox" class="checkBoxClass" v-model="mailSent.checked" :value="mailSent.id" />
                   </td>
-                  <td colspan="6" >{{ mail.name }}</td>
+                  <td colspan="6" >{{ mailSent.name }}</td>
                 </tr>
 
                 </tbody>
@@ -90,11 +90,11 @@
             <div class="tab-pane fade bin" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
               <table class="table table-sm trash-table">
                 <tbody>
-                <tr :class="[mail.status?'bold':'']" v-if="mail.length" v-for="mail in mailsToDisplay">
+                <tr :class="[mailDeleted.status?'bold':'']" v-if="mailsSent.length" v-for="mailDeleted in mailsDeleted">
                   <td>
-                    <input type="checkbox" class="checkBoxClass" v-model="mail.checked" :value="mail.id" />
+                    <input type="checkbox" class="checkBoxClass" v-model="mailDeleted.checked" :value="mailDeleted.id" />
                   </td>
-                  <td colspan="6" >{{ mail.name }}</td>
+                  <td colspan="6" >{{ mailDeleted.name }}</td>
                 </tr>
                 </tbody>
               </table>
