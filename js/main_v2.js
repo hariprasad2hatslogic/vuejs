@@ -57,7 +57,17 @@ new Vue({
     ],
   },
   created: function () {
-    this.mails = this.allMails[0];
+    var activeTab = localStorage.getItem('activeTab');
+    this.currentTab = localStorage.getItem('currentTab');
+    if (!activeTab) {
+      localStorage.setItem('activeTab', '#v-pills-home');
+    }
+    if (!this.currentTab) {
+      localStorage.setItem('currentTab', 0);
+      this.currentTab = 0;
+    }
+    this.mails = this.allMails[this.currentTab];
+    $('a[href="' + activeTab + '"]').tab('show');
   },
   computed: {
     selectAll: {
@@ -101,16 +111,22 @@ new Vue({
       this.currentTab = 0;
       this.selectAll = false;
       this.mails = this.allMails[0];
+      localStorage.setItem('activeTab', '#v-pills-home');
+      localStorage.setItem('currentTab', this.currentTab);
     },
     tabSent: function () {
       this.currentTab = 1;
       this.selectAll = false;
       this.mails = this.allMails[1];
+      localStorage.setItem('activeTab', '#v-pills-messages');
+      localStorage.setItem('currentTab', this.currentTab);
     },
     tabTrash: function () {
       this.currentTab = 2;
       this.selectAll = false;
       this.mails = this.allMails[2];
+      localStorage.setItem('activeTab', '#v-pills-settings');
+      localStorage.setItem('currentTab', this.currentTab);
     },
     moveToTrash: function () {
 

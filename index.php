@@ -49,7 +49,7 @@
             <div class="nav flex-column nav-pills side-nav__main " id="v-pills-tab" role="tablist"
               aria-orientation="vertical">
               <!-- <button type="button" class="btn side-nav__btn" data-toggle="modal" data-target="#myModal"> Open modal</button> -->
-              <a v-on:click="tabInbox" class=" side-nav__list nav-link active" id="v-pills-home-tab" data-toggle="pill"
+              <a v-on:click="tabInbox" class=" side-nav__list nav-link" id="v-pills-home-tab" data-toggle="pill"
                 href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">inbox</a>
               <a v-on:click="tabSent" class="nav-link side-nav__list" id="v-pills-messages-tab" data-toggle="pill"
                 href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Sent
@@ -63,7 +63,7 @@
 
         <div class="col-sm-10">
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <div class="tab-pane fade " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
               <table class="table table-sm indbox-table" id="tbl">
                 <tbody>
                   <tr :class="[mail.status?'bold':'']" v-if="mails.length" v-for="mail in mails">
